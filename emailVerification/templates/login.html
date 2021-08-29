@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container mt-5 ">
+        <div class="row  justify-content-center">
+            <div class="col-md-5">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        {% if from.erorrs %}
+                            <div class="alert-danger">
+                                {% for field in form %}
+                                    {% for erorr in form.erorrs %}
+                                        {{ erorr | escape }}
+                                    {% endfor %}
+
+                                {% endfor %}
+                                {% for erorr in form.non_field_erorrs %}
+                                    {{ erorr | escape }}
+                                {% endfor %}
+
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.email }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.password }}
+                    </div>
+
+                    <button type="submit" class="form-control btn btn-primary">Login</button>
+
+                    <div class="mt-3 form-check">
+                        Don't have an account? <a href="{% url 'Register' %}">Create Account</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

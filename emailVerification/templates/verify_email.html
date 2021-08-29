@@ -1,0 +1,8 @@
+{% autoescape off %}
+    Hi {{ first_name }} {{ last_name }}
+
+    Welcome to 'CompanyName'
+    Confirm your email address by clicking on the following hyperlink:
+
+    http://{{ domain }}{% url 'ConfirmEmail' activation_key=activation_key%}
+{% endautoescape %}
